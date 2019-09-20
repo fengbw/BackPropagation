@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>568 Homework 5</title>
+</head>
+<body>
+<h2>This web site will find the volulme for a Cylinder, Sphere or Cone</h2>
+<form id=myform action="" method="get">
+
+    Select the units (English or SI)<br>
+
+    <input type="radio" name="units" value="English" checked> English
+    <input type="radio" name="units" value="SI"> SI
+    <br><br>
+
+    Select the shape:
+    <select name="shape">
+        <option value="Cylinder">Cylinder</option>
+        <option value="Sphere">Sphere</option>
+        <option value="Cone">Cone</option>
+    </select>
+    <br><br>
+
+    Enter the radius: <input name="radius" type="text" width="12" value="1"> <br><br>
+    Enter the height: <input name="height" type="text" width="12" value="1"> <br><br>
+
+    <button type="button" style='font-size:13px' onClick="refreshPage()"> reset the form </button> <br>
+
+    <h2>Results</h2>
+
+    <h id = "u">You selected to use English units</h><br><br>
+    <h id = "s">You selected to find the values for a Cylinder shape</h><br><br>
+
+    <table border="1">
+    <tr>
+        <td align="center"><strong>Shape</strong></td>
+        <td align="center"><strong>Radius</strong></td>
+        <td align="center"><strong>Height</strong></td>
+        <td align="center"><strong>Volume</strong></td>
+    </tr>
+    <tr>
+        <td align="center"></td>
+        <td id="a" align="center"><strong>(ft)</strong></td>
+        <td id="b" align="center"><strong>(ft)</strong></td>
+        <td id="c" align="center"><strong>(ft^3)</strong></td>
+    </tr>
+    <tr>
+        <td id="d" align="center">Cylinder</td>
+        <td id="e" align="center"></td>
+        <td id="f" align="center"></td>
+        <td id="g" align="center"></td>
+    </tr>
+    </table><br>
+
+    <button type="button" style='font-size:13px' onclick="calculate(this.form)">Click to calculate the results</button>
+
+</form>
+</body>
+<SCRIPT LANGUAGE="JavaScript">
+
+function calculate (form) {
+    var units = form.units.value;
+    var shape = form.shape.value;
+    var radius = form.radius.value;
+    var height = form.height.value;
+    var pi = 3.1415926;
+    var volume;
+
+
+    if (units == "English") {
+        document.getElementById("a").innerHTML = "<strong>(ft)</strong>";
+        document.getElementById("b").innerHTML = "<strong>(ft)</strong>";
+        document.getElementById("c").innerHTML = "<strong>(ft^3)</strong>";
+
+    }
+    else if (units == "SI") {
+        document.getElementById("a").innerHTML = "<strong>(m)</strong>";
+        document.getElementById("b").innerHTML = "<strong>(m)</strong>";
+        document.getElementById("c").innerHTML = "<strong>(m^3)</strong>";
+    }
+
+    document.getElementById("u").innerHTML = "You selected to use " + units + " units";
+
+
+    if (shape == "Cylinder") {
+        volume = pi * height * radius * radius;
+    }else if (shape == "Sphere") {
+        volume = pi * radius * radius * radius;
+    }
+    else if (shape == "Cone") {
+        volume = 0.33333 * pi * height * radius * radius;
+    }
+
+    document.getElementById("s").innerHTML = "You selected to find the values for a " + shape + " shape";
+
+    document.getElementById("d").innerHTML = shape;
+    document.getElementById("e").innerHTML = radius;
+    document.getElementById("f").innerHTML = height;
+    document.getElementById("g").innerHTML = volume.toFixed(4);
+
+
+}
+
+function refreshPage(){
+    window.location.reload();
+}
+
+</SCRIPT>
+</html>
